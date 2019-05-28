@@ -7,9 +7,7 @@ pd.set_option('display.notebook_repr_html', False)
 plt.style.use('seaborn-white')
 # In R, I exported the dataset to a csv file. It is part of the base R distribution.
 
-
-
-df = pd.read_excel('../tabelas/dados2009.xlsx', sheetname=0)
+df = pd.read_excel('../planilhas/finais/DADOS2007-9.xlsx', sheetname=0)
 print(df)
 print("\nMédia\n")
 print(df.mean())
@@ -18,6 +16,7 @@ print(df.var())
 X = pd.DataFrame(scale(df), index=df.index, columns=df.columns)
 # The loading vectors
 pca_loadings = pd.DataFrame(PCA().fit(X).components_.T, index=df.columns, columns=['V1', 'V2', 'V3', 'V4','V5'])
+print("\nPCA_Loadings\n")
 print(pca_loadings)
 # Fit the PCA model and transform X to get the principal components
 pca = PCA()
@@ -53,5 +52,5 @@ ax2.arrow(0,0,-pca_loadings.V1[1], -pca_loadings.V2[1])
 ax2.arrow(0,0,-pca_loadings.V1[2], -pca_loadings.V2[2])
 ax2.arrow(0,0,-pca_loadings.V1[3], -pca_loadings.V2[3])
 ax2.arrow(0,0,-pca_loadings.V1[4], -pca_loadings.V2[4])
-plt.savefig('incendioxclima.png')
+#plt.savefig('salvaesse/2007-9-incendioxclima.png')
 plt.show()
